@@ -2,11 +2,11 @@ import User from "./../model/userModel.js";
 
 function createAndSendCookie(user, res) {
   const cookieOptions = {
-    httpOnly: true,
+    httpOnly: false,
     expires: false,
     secure: true,
   };
-  const token = user.signToken(user._id.toHexString());
+  const token = user.signToken(user);
   res.cookie("jwt_sent", token, cookieOptions);
 }
 
@@ -78,6 +78,7 @@ async function deleteUser(req, res, next) {
 async function createUser(req, res, next) {
   try {
     const user = await User.create(req.body);
+    user.password = undefined;
     res.status(201).json({
       status: "success",
       data: { user },
@@ -96,13 +97,14 @@ async function loginUser(req, res, next) {
     const { username, password } = req.body;
 
     if (!username || !password)
-      return next(new Error("Please enter your username and password"));
+      return next(new Error("Please enter your username and password. 400"));
 
     const user = await User.findOne({ username }).select("+password");
     if (!user || !(await user.comparePasswords(password)))
       return next(
-        new Error("Username or password are not correct. Please try again")
+        new Error("Username or password are not correct. Please try again. 401")
       );
+    user.password = undefined;
     createAndSendCookie(user, res);
     res.status(200).json({
       status: "success",

@@ -1,0 +1,17 @@
+{
+  "name": "Frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "buildCSS": "npx tailwindcss -i ./src/input.css -o ./public/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.1.8",
+    "daisyui": "^2.31.0"
+  },
+  "dependencies": {}
+}

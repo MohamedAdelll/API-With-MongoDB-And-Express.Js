@@ -7,13 +7,13 @@ async function protect(req, _, next) {
     const { jwt_sent } = req.cookies;
     if (!jwt_sent)
       return next(new Error("Invalid token! Try signing in again. 401"));
-    const id = jwt.verify(jwt_sent, process.env.JWT_SECRET);
-    if (!id)
+    const user = jwt.verify(jwt_sent, process.env.JWT_SECRET);
+    if (!user)
       return next(
         new Error("No user found with this token! try signing in again. 404")
       );
-    const user = await User.findById(id);
-    if (!user)
+    const userVerify = await User.findById(user._id);
+    if (!userVerify)
       return next(
         new Error("Invalid token for this user! Try signing in again. 401")
       );
@@ -27,12 +27,10 @@ async function protect(req, _, next) {
 async function restrict(req, _, next) {
   try {
     const { id } = req.params;
-    console.log(id);
     const post = await Post.findById(id).populate("user", "name username");
     if (!post) return next(new Error("Invalid post Id. 400"));
     const { user } = req;
-    console.log(user._id, post);
-    if (user._id.toHexString() !== post.user._id.toHexString())
+    if (user._id !== post.user._id.toHexString())
       return next(
         new Error("You are not allowed to perform this kind of action. 401")
       );

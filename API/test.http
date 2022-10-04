@@ -1,0 +1,61 @@
+# # Create A User
+# POST https://localhost:8080/api/v1/user/signup/
+# Content-Type: application/json
+
+# {
+#     "name":"Muhammed Raees Lograt",
+#     "username":"Muhammed2",
+#     "password":"password"
+# }
+
+# Get All Users
+# GET https://localhost:8080/api/v1/User/
+
+# #Get A User
+# GET https://localhost:8080/api/v1/User/
+
+
+# Signin A User
+# POST  https://localhost:8080/api/v1/User/login/
+# Content-Type: application/json
+
+# {
+#     "username":"Muhammed2",
+#     "password":"password"
+# }
+
+# #Logging Out A User
+# POST  https://localhost:8080/api/v1/User/logout/
+
+
+# #Update A User
+# PATCH  https://localhost:8080/api/v1/User/
+
+# #Delete A User
+# DELETE  https://localhost:8080/api/v1/post/
+
+# #Get All Posts
+# GET https://localhost:8080/api/v1/post/
+
+# #Get A Post
+# GET https://localhost:8080/api/v1/post/
+
+# Create A Post
+# POST  https://localhost:8080/api/v1/post/
+# Content-Type: application/json
+
+# {
+# "text":"Another post by user 2"
+# }
+
+
+# #Update A Post
+# PATCH  https://localhost:8080/api/v1/post/633414d21ca4b4ede5ab7f92
+# Content-Type: application/json
+
+# {
+# "text":"This is an amazing API, It can also update posts!"
+# }
+
+#Delete A Post
+DELETE  https://localhost:8080/api/v1/post/633416f21ca4b4ede5ab7fa2

@@ -10,6 +10,8 @@ router
   .get(postController.getAllPosts)
   .post(postController.createPost);
 
+router.route("/me").get(postController.getMyPosts);
+
 router.use("/:id", authController.restrict);
 router
   .route("/:id")

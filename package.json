@@ -1,0 +1,12 @@
+{
+  "name": "project-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd API && npm i && cd ../frontend && npm i",
+    "start": "cd API && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}

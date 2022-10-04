@@ -4,7 +4,7 @@ import authController from "../controller/authController.js";
 
 const router = Router();
 
-router.route("/login").post(userController.loginUser);
+router.route("/signin").post(userController.loginUser);
 router.route("/signup").post(userController.createUser);
 router.route("/logout").post(userController.logoutUser);
 

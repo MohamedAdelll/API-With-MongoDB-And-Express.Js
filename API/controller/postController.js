@@ -64,7 +64,23 @@ async function deletePost(req, res, next) {
   }
 }
 
+async function getMyPosts(req, res) {
+  try {
+    const { user } = req;
+    const userId = user._id;
+    const posts = await Post.find({ user: userId });
+    res.status(200).json({
+      status: "success",
+      results: posts.length,
+      data: { posts },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export default {
+  getMyPosts,
   getAllPosts,
   getPost,
   updatePost,
